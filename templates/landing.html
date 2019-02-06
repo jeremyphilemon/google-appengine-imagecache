@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>jrmy's appengine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+    <div class="columns">
+      <div class="column is-4 is-offset-4">
+        <div class="notification is-info has-text-centered">
+          <strong>Copied to clipboard!</strong>
+        </div>
+      </div>
+    </div>
+    <section class="hero is-white is-medium">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+          Enhance 🤪
+          </h1>
+          <div class="columns is-multiline is-mobile">
+            {% for link in cached_links %}
+              <div class="column is-one-quarter">
+                <img src="{{ link }}=s2560" onclick="copyToClipboard('{{ link }}'+'=s2560')">
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+  <script>
+  function copyToClipboard(link) {
+  var dummy = document.createElement("input");
+  document.body.appendChild(dummy);
+  dummy.setAttribute('value', link);
+  dummy.select();
+  document.execCommand("copy");
+  $(".notification").show();
+  document.body.removeChild(dummy);
+  setTimeout(function() {
+  $(".notification").hide();
+  }, 1500);
+  }
+  </script>
+</html>
